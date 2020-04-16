@@ -1,0 +1,47 @@
+<?php
+class robot
+{    
+    private $battery;
+
+    public function __construct()
+    {
+        $this->battery = 60;
+    }
+
+    public function clean($floor, $area){
+        if('carpet' == $floor) {
+            if($area<=30){
+                echo $floor.' Cleaned - 100%';
+                $batteryLife = $this->battery;
+                for($i=0;$i<$area;$i++){
+                    $batteryLife = $batteryLife - 2;
+                }
+                $percent = ($batteryLife/$this->battery)*100;
+                echo '</br>Battery Remaining in % '.$percent;
+            } else {
+                $percent = (30/$area)*100;
+                echo $floor.' Cleaned - in % '.$percent;
+                echo '</br>Battery Down, Wait for 30 Sec';
+            }
+        } else {
+            if($area<=60){
+                echo $floor.' Cleaned - 100%';
+                $batteryLife = $this->battery;
+                for($i=0;$i<$area;$i++){
+                    $batteryLife--;
+                }
+                $percent = ($batteryLife/$this->battery)*100;
+                echo '</br>Battery Remaining in % '.$percent;
+            } else {
+                $percent = (60/$area)*100;
+                echo $floor.' Cleaned - in % '.$percent;
+                echo '</br>Battery Down, Wait for 30 Sec';
+            }
+        }
+    }
+}
+
+$robotObj = new robot();
+$robotObj->clean('floor', 60);
+$robotObj->clean('carpet', 40);
+?>
