@@ -1,0 +1,33 @@
+<?php
+class robot
+{    
+    private $battery;
+
+    public function __construct()
+    {
+        $this->battery = 60;
+    }
+
+    public function clean($floor, $area){
+        if('carpet' == $floor) {
+            if($area<=30){
+                echo $floor.' Cleaned - 100%';
+                $batteryLife = 60;
+                for($i=0;$i<$area;$i++){
+                    $batteryLife = $batteryLife - 2;
+                }
+                $percent = ($batteryLife/60)*100;
+                echo 'Battery Remaining in % '.$percent;
+            } else {
+                
+            }
+        } else {
+            
+        }
+    }
+}
+
+$a = new robot();
+$a->clean('carpet', 30);
+?>
+
